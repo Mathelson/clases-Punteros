@@ -1,0 +1,68 @@
+
+
+para que sirve el puntero?
+es una variable que guarda la direccion de memoria de otra variable generalmente.
+
+
+int nro,vec[1000]//pido memoria de manera estatica
+
+funcion(int *n)
+
+
+a medidida que necesito espacio la voy pidiendo por eso utilizo memoria dinamica con punteros
+
+stdio.h
+
+malloc  //memory allocation
+
+void*   //devuelve un dato del tipo void
+
+void* malloc(sizeof(int));//recibe un entero que equivale a la cantidad de bytes que estoy pidiendo
+
+ej:
+int *p;
+p=malloc(sizeof(int)+2)//obtengo espacio en memoria para dos enteros;
+para respetar el tipo debo castearlo
+p=(int*)malloc(sizeof(int)+2);//entero flotante char double;
+			      //no sirve para redireccionar memora
+			      //EN TIEMPO DE EJECUCION
+
+
+
+void* realloc(void* ptr, unsigned int size);
+void* realloc(*,ent)
+void* realloc(p,sizeof(int)*4);//seria un bloque de 4//la idea es no abrir el codigo fuente
+malloc devuelve la direccion de memoria para un puntero en este caso 8 bites,
+siempre que tenga memoria disponibles de lo contrario devuelve NULL(Es una direccion de memoria que no esta apuntando a ninguna direccion de memoria, es un dato que no es incompatible)
+
+pAux=realloc(p,sizeof(int)*4);
+
+
+p//principio del bloque 2
+memoria para cuatro enteros *4
+p=realloc(p,sizeof(int)*4);//ERROR ESTO DEVUELVE NULL
+
+
+//EL BLOQUE DE MEMORIA QUE NOS DAN SIEMPRE ES DE MANERA CONSECUTIVA.., LA MEMORIA LOS BUSCA
+
+if(pAux!=NULL)
+{
+    p=pAux;
+
+}
+
+free(p);
+
+
+//
+//ESTUDIAR SEGMENTOS DE MEMORIA
+//CALLOC INICIALIZA EN 0 UN INT Y /0 EN CHAR
+
+
+
+
+SI UN PUNTERO APUNTA A NULL
+FREE(pAux);//ERRROR EN TIEMPO DE EJECUCION
+//NO PUEDO LIBERAR 2 VECES LA MISMA DIRECCION DE MEMORIA;
+
+//LIBERO DE MANERA DINAMICA LO QUE RECERBE DE MANERA DINAMICA
