@@ -4,7 +4,7 @@
 
 
 //static void initialize(Person* this, int age, int something);
-static void initialize(Person* this, int age,char*nombre int something);
+static void initialize(Person* this, int age, int something);
 
 /** \brief  Reseva espacio en meomoria para una nueva persona y la inicializa
  *
@@ -23,12 +23,12 @@ static void initialize(Person* this, int age,char*nombre int something);
 //    return this;//DEVULEVE UN PUNTERO DEL TIPO PERSONA//PIDIO MEMORIA DE MANERA DINAMICA Y ADEMAS TIENE DATOS
 //}
 
-Person* person_new (int age,char*nombre int something)
+Person* person_new (int age, int something)
 {
  Person* this = malloc(sizeof(Person));
  if(this != NULL)
  {
-     initialize(this,age,nombre,something);
+     initialize(this,age,something);
        return this;
  }
 }
@@ -40,7 +40,7 @@ Person* person_new (int age,char*nombre int something)
  * \return void
  *
  */
-static void initialize(Person* this, int age,char*nombre int something)
+static void initialize(Person* this, int age, int something)
 {
     this->age = age;//EL AGE DE LA DERECHA PERTENECE A LA ESTRUCTURA
     this->something = something;

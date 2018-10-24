@@ -20,7 +20,7 @@ int main()
     }
     for(i = 0; i < 3; i++)
     {
-        printf("\nAge: %2d nombre %s",person_getAge(personArray[i]));//person Array person_get devuelve el otro lo muestra
+        printf("\nAge: %2d nombre %s",person_getAge(personArray[i]),persona_getName(personArray[i]));//person Array person_get devuelve el otro lo muestra
     }
     scanf(" ");
     return 0;

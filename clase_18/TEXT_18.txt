@@ -1,0 +1,198 @@
+
+ARCHIVOS:	
+-txt: se pueden leeer//solo podemos utilizar texto,numeros no!
+-binario: salvo que sea del tipo char no vamos a poder interpretarlo
+AMBOS QUEDAN ALMACENADOS DE MANERA BINARIA
+
+DIF TIPOS DE ARCHIVOS
+BINARIO 23=4 BITES
+TEXTO "23"= 2 BITES
+
+ASCCI : 50 51
+TEXTO :  2  3
+
+BIN:     001100100 00100011 
+	---------- --------
+            50       51 
+         ------     -----
+             2        3
+
+DE MEMORA AL ARCHIVO
+DEL DISCO A LA MEMORIA
+FREAD O FRIDE //SIEMPRE SE EJECUTAN EN MEMORIA 
+
+NOMBRE EN QUE PARTE DEL DISCO LO VOY A GUARDAR DENTRO DE FILE
+ARCHIVO FILE ES UN PUNTERO
+NECESITO UN VINCULO ENTRE EL DISCO Y PARA PODER SUBIR A ESE DISCO LO QUE TENGO EN MEMORIA, PARA PODER TRABAJAR EN MEMORIA UTILIZO PUNTEROS PARA PODER TRABAJAR EN MEMORIA.
+
+       		
+Fopen(Path,Modo//binario o texto[escritura y lectura]);//abrir modo texto//se trabaja de manera binaria	
+
+
+
+devuelve un puntero a memoria direccion
+
+controlar que Fopen sea distinto de NULL//devuelve null cuando el archivo no existe
+
+
+
+
+A tener en cuenta:
+• Se pueden abrir varios archivos al mismo tiempo siempre y cuando exista por lo menos
+un puntero a FILE para cada uno.
+• La cantidad de archivos que se pueden abrir al mismo tiempo depende del sistema
+operativo.
+• No se debe modificar el valor del puntero devuelto por 'fopen()'.
+
+
+//////////
+
+
+FILE *parch;
+if((parch=fopen("banco.dat","rb"))==NULL)//existe unarchivo que se llama banco y elmoddo de apertura y se lo0 asigna a parch
+{                            w si no existe y el modo es de escritura lo crea;
+printf("\nEl archivo no puede ser abierto");
+exit (1);//hubo un problema, se cierra la app
+}
+fclose(parch);//recibe el puntero a file
+
+
+//////////
+si el archivo no existe lo crea y si existe lo tiene que abrir
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FILE *parch;
+char nombre[20];
+printf("\nIngrese el nombre y ruta del archivo que desea abrir: ");
+gets(nombre);
+if((parch=fopen( nombre ,"rb"))==NULL)//si rb ==NULL es porque esta "libre"//no existe el archivo
+{
+if((parch=fopen( nombre ,"wb"))==NULL)//se puede utilizar
+{
+printf("\nEl archivo %s no puede ser abierto",nombre);
+exit (1);
+}
+fclose(parch);
+}
+
+
+
+    write//escribe
+
+int fread ( void * destino , size_t tamaño , size_t cantidad , FILE *arch );//una escribe y la otra lee
+
+
+
+
+
+
+
+TEXTO
+
+FILE *parch;
+char texto[ ]="Prueba de escritura";
+int cant , longi;
+if((parch=fopen("prueba.txt","w"))==NULL) //Se abre en modo escritura
+{
+printf("\nEl archivo no puede ser abierto");
+exit (1);
+}
+longi=strlen (texto );
+cant=fwrite ( texto , sizeof ( char ) , longi , parch ); //Se escribe al archivo//texto,1byte,cantidad de longitud,puntero a file
+if (cant<longi)
+printf("\nError al escribir el archivo");
+else
+printf("\nSe escribieron %d caracteres", cant);//se escribio de manera correcta
+fclose(parch);
+
+
+
+BINARIO
+
+
+struct a{
+char nombre[10];
+int edad;
+};
+void main (void)
+{
+FILE *bin;
+struct a pers;
+bin=fopen("bin.dat","wb");
+printf("\nIngrese el nombre: ");
+gets(pers.nombre);
+printf("Ingrese la edad: ");
+scanf("%d",&pers.edad);//IMPORTANRE 
+fflush(stdin);
+fwrite(&pers,sizeof(pers),1,bin);//CORRESPONDE AL TIPO DE DATO SI PASA "struct a" ES LO MISMO
+fclose(bin);
+}
+
+
+
+
+
+
+
+
+cant=fread(&pers,sizeof(pers),1,bin);///si devuelve 1 es porque funciona
+******************************************************************************************
+
+void rewind (FILE* arch);//BUSCAR UN DATO PARA MODIFICAR LA OTRA FUNCION ASOCIASDA
+						LUGAR DE ORIGEN, SE UTILIZA COMO MACRO
+
+int fseek ( FILE *arch , long desplazamiento , int origen);//
+
+SEEK_SET A partir del comienzo del archivo
+SEEK_CUR A partir de la posición actual del archivo
+SEEK_END A partir de el final del archivo
+
+ELIJO DONDE PUEDO BUSCAR
+
+
+fseek ( ptr , 0L , SEEK_SET );//ENTERO LARGO//DESDE EL PRINCIPIO
+
+fseek ( ptr , 0L , SEEK_END );//DESDE EL FINAL
+
+
+fseek ( ptr , 20L , SEEK_SET );//20 BYTES//
+
+
+
+
+
+
+//
+
+seek ( ptr , (long) (-1)*sizeof (struct x) , SEEK_CUR )//SE MUEVE DEL TAMANIO DE UNA ESTRUCTURA DESDE DONDE ESTA PARADO EL PUNTERO UNA 
+
+3== COD ESTRUCT, LUEGO SE MODIFICA LA DESCRIPCION*-1 EL SEÑALADOR QUEDA AL COMIENZO, PORQUE VUELVE A LA POSICION ANTERIOR//MODIFICACION Y BAJA,
+
+
+
+
+
+
+
+long ftell (FILE * arch );//PARA SABER LA CANTIDAD DE BYTES QUE HAY DESDE EL INICION HASTA EL LUGAR DONDE SE ENCUENTRA EL CURSOR.
+
+
+
+
+
+
+
+
+ 

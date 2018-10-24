@@ -17,7 +17,7 @@ typedef struct
  *
  */
 //Person* person_new (int age, int something );
-Person* person_new (int age,char*nombre, int something );
+Person* person_new (int age, int something );
 
 /** \brief  Setea la edad de una persona recibida como parametro
  * \param Person* this Puntero a la persona
